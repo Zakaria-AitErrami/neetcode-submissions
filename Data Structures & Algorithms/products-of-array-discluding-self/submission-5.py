@@ -1,0 +1,19 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        prod, zero_count = 1, 0
+        for num in nums:
+            if num == 0:
+                zero_count+=1
+            if num!=0:
+                prod*=num
+        if zero_count > 1:
+            return [0] * len(nums)
+        
+        res = [0] * len(nums)
+        for i, num in enumerate(nums):
+            if not zero_count:
+                res[i] = prod // nums[i]
+            if num==0:
+                res[i] = prod
+        return res
+                
